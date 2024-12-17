@@ -24,6 +24,12 @@
             justify-content: center;
             align-items: center;
             overflow: hidden;
+            background: pink; /* 设置背景色为粉红色 */
+            background-image: repeating-linear-gradient(45deg, transparent, transparent 10px, pink 10px, pink 20px),
+                repeating-linear-gradient(-45deg, transparent, transparent 10px, pink 10px, pink 20px);
+            /* 通过线性渐变背景，重复绘制出类似铺满的"LOVE"图案效果（这里用粉色块示意，后续会替换文字） */
+            background-size: 20px 20px; /* 设置背景图案大小 */
+            background-position: 0 0; /* 设置背景图案起始位置 */
         }
 
         img {
@@ -31,21 +37,6 @@
             max-width: 100%; /* 限制图片最大宽度不超过容器宽度 */
             max-height: 100%; /* 限制图片最大高度不超过容器高度 */
             display: block;
-        }
-
-        /* 使用伪元素来添加粉红色的"LOVE"背景 */
-       .image-slider::before {
-            content: "LOVE";
-            color: pink;
-            font-size: 30px; /* 可根据需求调整字体大小 */
-            position: absolute;
-            z-index: -1; /* 将文字置于图片下层 */
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            width: 100%;
-            height: 100%;
-            pointer-events: none; /* 避免文字遮挡图片交互操作 */
         }
 
         /* 音频元素样式，可根据喜好调整 */
