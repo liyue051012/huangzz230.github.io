@@ -9,6 +9,13 @@
             width: 100%;
             height: auto;
         }
+
+        /* 图片容器样式，设置相对定位，方便后续图片定位切换 */
+      .image-slider {
+            position: relative;
+            width: 100%;
+            height: auto;
+        }
     </style>
 </head>
 
@@ -21,26 +28,52 @@
         您的浏览器不支持音频播放。
     </audio>
 
-    <picture>
-        <source media="(max-width: 600px)" srcset="/img/009.png">
-        <source media="(max-width: 1000px)" srcset="/img/009.png">
-        <img src="/img/009.png" alt="图片示例">
-    </picture>
-    <picture>
-        <source media="(max-width: 600px)" srcset="/img/002.jpg">
-        <source media="(max-width: 1000px)" srcset="/img/002.jpg">
-        <img src="/img/002.jpg" alt="图片示例">
-    </picture>
+    <div class="image-slider">
         <picture>
-        <source media="(max-width: 600px)" srcset="/img/003.jpg">
-        <source media="(max-width: 1000px)" srcset="/img/003.jpg">
-        <img src="/img/003.jpg" alt="图片示例">
-    </picture>
-    <picture>
-        <source media="(max-width: 600px)" srcset="/img/004.jpg">
-        <source media="(max-width: 1000px)" srcset="/img/004.jpg">
-        <img src="/img/004.jpg" alt="图片示例">
-    </picture>
+            <source media="(max-width: 600px)" srcset="/img/009.png">
+            <source media="(max-width: 1000px)" srcset="/img/009.png">
+            <img src="/img/009.png" alt="图片示例">
+        </picture>
+        <picture>
+            <source media="(max-width: 600px)" srcset="/img/002.jpg">
+            <source media="(max-width: 1000px)" srcset="/img/002.jpg">
+            <img src="/img/002.jpg" alt="图片示例">
+        </picture>
+        <picture>
+            <source media="(max-width: 600px)" srcset="/img/003.jpg">
+            <source media="(max-width: 1000px)" srcset="/img/003.jpg">
+            <img src="/img/003.jpg" alt="图片示例">
+        </picture>
+        <picture>
+            <source media="(max-width: 600px)" srcset="/img/004.jpg">
+            <source media="(max-width: 1000px)" srcset="/img/004.jpg">
+            <img src="/img/004.jpg" alt="图片示例">
+        </picture>
+    </div>
+
+    <script>
+        // 获取所有的 picture 元素，每个 picture 里包含对应的图片
+        const pictures = document.querySelectorAll('.image-slider picture');
+        let currentIndex = 0;
+        const intervalTime = 3000; // 轮播间隔时间，单位毫秒，这里设置为3秒，可根据需求修改
+
+        function showNextImage() {
+            // 隐藏当前显示的图片
+            pictures[currentIndex].style.display = 'none';
+            currentIndex++;
+            if (currentIndex >= pictures.length) {
+                currentIndex = 0;
+            }
+            // 显示下一张图片
+            pictures[currentIndex].style.display = 'block';
+        }
+
+        // 页面加载完成后立即显示第一张图片
+        pictures[0].style.display = 'block';
+
+        // 设置定时器，每隔一段时间切换一次图片，实现自动轮播
+        setInterval(showNextImage, intervalTime);
+    </script>
 </body>
 
 </html>
