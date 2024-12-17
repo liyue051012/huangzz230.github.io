@@ -19,23 +19,23 @@
      .image-slider {
             position: relative;
             width: 100%;
-            flex: 1; /* 让图片容器占据剩余空间，以便图片自适应高度 */
+            flex: 1;
             display: flex;
             justify-content: center;
             align-items: center;
             overflow: hidden;
-            background: pink; /* 设置背景色为粉红色 */
+            background: pink;
+            /* 注释掉原来的背景图案相关属性，后续通过JavaScript添加文字背景
             background-image: repeating-linear-gradient(45deg, transparent, transparent 10px, pink 10px, pink 20px),
                 repeating-linear-gradient(-45deg, transparent, transparent 10px, pink 10px, pink 20px);
-            /* 通过线性渐变背景，重复绘制出类似铺满的"LOVE"图案效果（这里用粉色块示意，后续会替换文字） */
-            background-size: 20px 20px; /* 设置背景图案大小 */
-            background-position: 0 0; /* 设置背景图案起始位置 */
+            background-size: 20px 20px;
+            background-position: 0 0; */
         }
 
         img {
-            width: auto; /* 图片宽度自适应自身内容，保证完整显示 */
-            max-width: 100%; /* 限制图片最大宽度不超过容器宽度 */
-            max-height: 100%; /* 限制图片最大高度不超过容器高度 */
+            width: auto;
+            max-width: 100%;
+            max-height: 100%;
             display: block;
         }
 
@@ -49,6 +49,17 @@
             background-color: #ccc;
             text-align: center;
             padding: 10px;
+        }
+
+        /* 用于铺满背景的文字样式（可根据需求调整字体、颜色、大小等） */
+      .bg-text {
+            color: pink;
+            font-size: 16px;
+            font-family: Arial, sans-serif;
+            position: absolute;
+            pointer-events: none;
+            z-index: -1;
+            white-space: nowrap;
         }
     </style>
 </head>
@@ -86,6 +97,21 @@
     </div>
 
     <script>
+        // 获取图片容器元素
+        const imageSlider = document.querySelector('.image-slider');
+
+        // 循环创建多个包含"LOVE"文字的元素铺满容器
+        for (let y = 0; y < imageSlider.offsetHeight; y += 20) {
+            for (let x = 0; x < imageSlider.offsetWidth; x += 80) {
+                const span = document.createElement('span');
+                span.textContent = 'LOVE';
+                span.className = 'bg-text';
+                span.style.top = `${y}px`;
+                span.style.left = `${x}px`;
+                imageSlider.appendChild(span);
+            }
+        }
+
         // 获取所有的 picture 元素，每个 picture 里包含对应的图片
         const pictures = document.querySelectorAll('.image-slider picture');
         let currentIndex = 0;
