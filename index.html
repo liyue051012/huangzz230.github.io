@@ -5,16 +5,40 @@
     <meta charset="UTF-8">
     <title>我是郭炫逸！</title>
     <style>
+        /* 全局图片样式，确保图片宽度自适应容器宽度，高度按比例自适应 */
         img {
             width: 100%;
             height: auto;
+            max-width: 100%; /* 限制图片最大宽度不超过其容器宽度 */
+            display: block; /* 将图片设置为块级元素，避免一些布局问题 */
         }
 
-        /* 图片容器样式，设置相对定位，方便后续图片定位切换 */
+        /* 图片容器样式，设置相对定位，方便后续图片定位切换，同时让容器宽度占满页面 */
       .image-slider {
             position: relative;
             width: 100%;
             height: auto;
+            overflow: hidden; /* 隐藏超出容器的部分，让图片切换更平滑 */
+        }
+
+        /* 使用媒体查询针对不同屏幕宽度进一步调整图片显示 */
+        @media screen and (max-width: 600px) {
+            img {
+                /* 在小屏幕设备上，可以适当调整图片的一些显示细节，比如边距等 */
+                margin: 0 5px; 
+            }
+        }
+
+        @media screen and (min-width: 601px) and (max-width: 1000px) {
+            img {
+                /* 中等屏幕设备下的样式调整 */
+            }
+        }
+
+        @media screen and (min-width: 1001px) {
+            img {
+                /* 大屏幕设备下的样式调整 */
+            }
         }
     </style>
 </head>
