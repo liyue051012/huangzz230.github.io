@@ -15,23 +15,8 @@
             justify-content: space-between;
         }
 
-        <!doctype  html>
-<html>
-<head>
-    <title>滚动文字</title>
-</head>
-	
-<body>
-<marquee  direction="right"  behavior="alternate"  scrollamount="15"  scrolldelay="10"  loop="2"    height="100"  bgcolor="ABCDEF" >
-	<font  face="隶书"  color="#0066FF"  size="5">我是郭炫逸</font>
-</marquee>
-<marquee  direction="left"  behavior="scroll"  scrollamount="25"  loop="1"  bgcolor="pink"  hspace="90"   vspace="50">
-	<font  face="隶书"  color="red"  size="5">这不是黑历史，这是我的来时路</font>
-</marquee>
-</body>
-</html>
         /* 图片容器样式，设置相对定位，方便后续图片定位切换，同时让容器宽度占满页面 */
-     .image-slider {
+    .image-slider {
             position: relative;
             width: 100%;
             flex: 1;
@@ -67,7 +52,7 @@
         }
 
         /* 用于铺满背景的文字样式（可根据需求调整字体、颜色、大小等） */
-      .bg-text {
+     .bg-text {
             color: pink;
             font-size: 16px;
             font-family: Arial, sans-serif;
@@ -75,6 +60,30 @@
             pointer-events: none;
             z-index: -1;
             white-space: nowrap;
+        }
+
+        #scrolling-text-container {
+            overflow: hidden;
+            width: 100%;
+            height: 30px;
+            margin-bottom: 10px;
+        }
+
+        #scrolling-text {
+            display: inline-block;
+            white-space: nowrap;
+            color: red;
+            font-size: 20px;
+            animation: scrollText 10s linear infinite;
+        }
+
+        @keyframes scrollText {
+            from {
+                transform: translateX(100%);
+            }
+            to {
+                transform: translateX(-100%);
+            }
         }
     </style>
 </head>
@@ -88,8 +97,12 @@
         您的浏览器不支持音频播放。
     </audio>
 
+    <div id="scrolling-text-container">
+        <span id="scrolling-text">这里是滚动的文字内容，你可以自行修改哦</span>
+    </div>
+
     <div class="image-slider">
-        <picture>
+	<picture>
             <source media="(max-width: 600px)" srcset="/img/010.jpg">
             <source media="(max-width: 1000px)" srcset="/img/010.jpg">
             <img src="/img/010.jpg" alt="图片示例">
@@ -114,7 +127,7 @@
             <source media="(max-width: 1000px)" srcset="/img/004.jpg">
             <img src="/img/004.jpg" alt="图片示例">
         </picture>
-         <picture>
+	<picture>
             <source media="(max-width: 600px)" srcset="/img/011.jpg">
             <source media="(max-width: 1000px)" srcset="/img/011.jpg">
             <img src="/img/011.jpg" alt="图片示例">
@@ -140,7 +153,7 @@
         // 获取所有的 picture 元素，每个 picture 里包含对应的图片
         const pictures = document.querySelectorAll('.image-slider picture');
         let currentIndex = 0;
-        const intervalTime = 5000; // 轮播间隔时间，单位毫秒，这里设置为3秒，可根据需求修改
+        const intervalTime = 3000; // 轮播间隔时间，单位毫秒，这里设置为3秒，可根据需求修改
 
         function showNextImage() {
             // 隐藏当前显示的图片
@@ -158,6 +171,12 @@
 
         // 设置定时器，每隔一段时间切换一次图片，实现自动轮播
         setInterval(showNextImage, intervalTime);
+
+        window.onload = function () {
+            const scrollingText = document.getElementById('scrolling-text');
+            // 例如，这里可以通过定时器等方式定时修改文字内容，简单示例直接修改
+            scrollingText.textContent = '这不是黑历史 这是我的来时路';
+        };
     </script>
 </body>
 
