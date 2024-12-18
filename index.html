@@ -16,7 +16,7 @@
         }
 
         /* 图片容器样式，设置相对定位，方便后续图片定位切换，同时让容器宽度占满页面 */
-    .image-slider {
+      .image-slider {
             position: relative;
             width: 100%;
             flex: 1;
@@ -24,12 +24,9 @@
             justify-content: center;
             align-items: center;
             overflow: hidden;
-            background: pink;
-            /* 注释掉原来的背景图案相关属性，后续通过JavaScript添加文字背景
-            background-image: repeating-linear-gradient(45deg, transparent, transparent 10px, pink 10px, pink 20px),
-                repeating-linear-gradient(-45deg, transparent, transparent 10px, pink 10px, pink 20px);
-            background-size: 20px 20px;
-            background-position: 0 0; */
+            background-image: url('/img/love.png');
+            background-size: cover;
+            background-repeat: no-repeat;
         }
 
         img {
@@ -50,58 +47,24 @@
             text-align: center;
             padding: 10px;
         }
-
-        /* 用于铺满背景的文字样式（可根据需求调整字体、颜色、大小等） */
-     .bg-text {
-            color: pink;
-            font-size: 16px;
-            font-family: Arial, sans-serif;
-            position: absolute;
-            pointer-events: none;
-            z-index: -1;
-            white-space: nowrap;
-        }
-
-        #scrolling-text-container {
-            overflow: hidden;
-            width: 100%;
-            height: 30px;
-            margin-bottom: 10px;
-        }
-
-        #scrolling-text {
-            display: inline-block;
-            white-space: nowrap;
-            color: red;
-            font-size: 20px;
-            animation: scrollText 10s linear infinite;
-        }
-
-        @keyframes scrollText {
-            from {
-                transform: translateX(100%);
-            }
-            to {
-                transform: translateX(-100%);
-            }
-        }
     </style>
 </head>
 
 <body>
-    <!-- 音频元素，用于播放音乐，设置 autoplay 让其自动播放，loop 让其循环播放 -->
+    <!-- 音频元素，用于播放音乐，设置autoplay让其自动播放，loop让其循环播放 -->
     <audio autoplay loop>
         <source src="/img/特别的人.mp3" type="audio/mpeg">
-        <!-- 如果浏览器不支持 MP3 格式，可添加其他格式备用，如下面示例（可选） -->
+        <!-- 如果浏览器不支持MP3格式，可添加其他格式备用，如下面示例（可选） -->
         <source src="your-music-file.ogg" type="audio/ogg">
         您的浏览器不支持音频播放。
     </audio>
 
-    <div id="scrolling-text-container">
-        <span id="scrolling-text">这里是滚动的文字内容，你可以自行修改哦</span>
-    </div>
-
     <div class="image-slider">
+         <picture>
+            <source media="(max-width: 600px)" srcset="/img/010.jpg">
+            <source media="(max-width: 1000px)" srcset="/img/010.jpg">
+            <img src="/img/010.jpg" alt="图片示例">
+        </picture>
         <picture>
             <source media="(max-width: 600px)" srcset="/img/009.png">
             <source media="(max-width: 1000px)" srcset="/img/009.png">
@@ -122,25 +85,15 @@
             <source media="(max-width: 1000px)" srcset="/img/004.jpg">
             <img src="/img/004.jpg" alt="图片示例">
         </picture>
+         <picture>
+            <source media="(max-width: 600px)" srcset="/img/011.jpg">
+            <source media="(max-width: 1000px)" srcset="/img/011.jpg">
+            <img src="/img/011.jpg" alt="图片示例">
+        </picture>
     </div>
 
     <script>
-        // 获取图片容器元素
-        const imageSlider = document.querySelector('.image-slider');
-
-        // 循环创建多个包含"LOVE"文字的元素铺满容器
-        for (let y = 0; y < imageSlider.offsetHeight; y += 20) {
-            for (let x = 0; x < imageSlider.offsetWidth; x += 80) {
-                const span = document.createElement('span');
-                span.textContent = 'LOVE';
-                span.className = 'bg-text';
-                span.style.top = `${y}px`;
-                span.style.left = `${x}px`;
-                imageSlider.appendChild(span);
-            }
-        }
-
-        // 获取所有的 picture 元素，每个 picture 里包含对应的图片
+        // 获取所有的picture元素，每个picture里包含对应的图片
         const pictures = document.querySelectorAll('.image-slider picture');
         let currentIndex = 0;
         const intervalTime = 3000; // 轮播间隔时间，单位毫秒，这里设置为3秒，可根据需求修改
@@ -161,12 +114,6 @@
 
         // 设置定时器，每隔一段时间切换一次图片，实现自动轮播
         setInterval(showNextImage, intervalTime);
-
-        window.onload = function () {
-            const scrollingText = document.getElementById('scrolling-text');
-            // 例如，这里可以通过定时器等方式定时修改文字内容，简单示例直接修改
-            scrollingText.textContent = '新的滚动文字内容啦';
-        };
     </script>
 </body>
 
