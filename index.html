@@ -16,7 +16,7 @@
         }
 
         /* 图片容器样式，设置相对定位，方便后续图片定位切换，同时让容器宽度占满页面 */
-    .image-slider {
+   .image-slider {
             position: relative;
             width: 100%;
             flex: 1;
@@ -24,7 +24,15 @@
             justify-content: center;
             align-items: center;
             overflow: hidden;
-            background: pink;
+            /* 移除原来的背景颜色设置 */
+            /* background: pink; */
+            /* 设置多张背景图片，这里示例使用三张，可根据实际准备的图片数量调整 */
+            background-image: url('/img/love.png'), url('/img/love.png'), url('/img/love.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-blend-mode: multiply;
+            opacity: 0.6;
             /* 注释掉原来的背景图案相关属性，后续通过JavaScript添加文字背景
             background-image: repeating-linear-gradient(45deg, transparent, transparent 10px, pink 10px, pink 20px),
                 repeating-linear-gradient(-45deg, transparent, transparent 10px, pink 10px, pink 20px);
@@ -52,7 +60,7 @@
         }
 
         /* 用于铺满背景的文字样式（可根据需求调整字体、颜色、大小等） */
-     .bg-text {
+    .bg-text {
             color: pink;
             font-size: 16px;
             font-family: Arial, sans-serif;
@@ -102,7 +110,7 @@
     </div>
 
     <div class="image-slider">
-	<picture>
+        <picture>
             <source media="(max-width: 600px)" srcset="/img/010.jpg">
             <source media="(max-width: 1000px)" srcset="/img/010.jpg">
             <img src="/img/010.jpg" alt="图片示例">
@@ -127,7 +135,7 @@
             <source media="(max-width: 1000px)" srcset="/img/004.jpg">
             <img src="/img/004.jpg" alt="图片示例">
         </picture>
-	<picture>
+        <picture>
             <source media="(max-width: 600px)" srcset="/img/011.jpg">
             <source media="(max-width: 1000px)" srcset="/img/011.jpg">
             <img src="/img/011.jpg" alt="图片示例">
